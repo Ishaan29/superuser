@@ -1,0 +1,7 @@
+
+class OCRService {
+
+}
+
+
+export { OCRService };

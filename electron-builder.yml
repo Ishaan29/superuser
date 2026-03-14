@@ -1,0 +1,83 @@
+appId: com.yourcompany.proto-super-user
+productName: Proto Super User
+copyright: Copyright © 2024 Your Company
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - node_modules/**/*
+  - package.json
+
+extraResources:
+  - from: "assets/"
+    to: "assets/"
+    filter: ["**/*"]
+
+# macOS configuration
+mac:
+  category: public.app-category.productivity
+  target:
+    - target: dmg
+      arch: [x64, arm64]
+  icon: build/icon.icns
+  darkModeSupport: true
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+
+# Windows configuration  
+win:
+  target:
+    - target: nsis
+      arch: [x64, ia32]
+  icon: build/icon.ico
+  publisherName: Your Company
+  verifyUpdateCodeSignature: false
+
+# Linux configuration
+linux:
+  target:
+    - target: AppImage
+      arch: [x64]
+  icon: build/icon.png
+  category: Utility
+
+# NSIS installer configuration
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+
+# DMG configuration
+dmg:
+  title: ${productName}
+  icon: build/icon.icns
+  window:
+    width: 540
+    height: 380
+  contents:
+    - x: 410
+      y: 230
+      type: link
+      path: /Applications
+    - x: 130
+      y: 230
+      type: file
+
+# Publish configuration (uncomment when ready)
+# publish:
+#   provider: github
+#   owner: your-username
+#   repo: proto-super-user
+
+# Auto-updater configuration
+# autoUpdater:
+#   provider: github
+#   owner: your-username
+#   repo: proto-super-user 
